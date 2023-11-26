@@ -1,0 +1,131 @@
+{
+	"compiler": {
+		"version": "0.8.22+commit.4fc1097e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "contract IBillionaireDojo",
+						"name": "_dojo",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "player1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "player2",
+						"type": "uint256"
+					}
+				],
+				"name": "fight",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "winner",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IOctagon",
+						"name": "_octagon",
+						"type": "address"
+					}
+				],
+				"name": "setOctagon",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/FightLogic.sol": "FightLogic"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [
+			":@lukso/=lib/lukso-foundry/src/",
+			":@openzeppelin/=lib/openzeppelin-contracts/",
+			":ds-test/=lib/forge-std/lib/ds-test/src/",
+			":forge-std/=lib/forge-std/src/"
+		]
+	},
+	"sources": {
+		"src/FightLogic.sol": {
+			"keccak256": "0xfa6719f323385620570a87c3ac04c846818bed964cac3abc39f2eb1629383b06",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://464042706c63f418e45e7ea34206259bb1a2c6e4328dfbc641b00357397c3825",
+				"dweb:/ipfs/QmaeS99eug6nYSf7JAyTj2E3cZu7BDUeAJGk9KSN9pbpRD"
+			]
+		},
+		"src/Structs.sol": {
+			"keccak256": "0xafba7088ea0922f64cd0f9f095d349db6534343bd07f3f5c0c1b71df1b7b69c9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d5591fe50a7c9b14b9f6fb1b143a391a101c2f667a2dba78187549db5e4f4b2c",
+				"dweb:/ipfs/QmXyCRjmkkwuVBDqEi5QLvikEPHyKmwkYJG156oEg4EKPW"
+			]
+		},
+		"src/interfaces/IBillionaireDojo.sol": {
+			"keccak256": "0x64824f04b2e446c75f48201d4bcd75af711be77a53d7e9690c2311242beaba97",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5bf2a45add5beebd25de8c50a765ca114c06f36cb659647b494b8158ac37157a",
+				"dweb:/ipfs/QmP3SYYMfdfsCd2T1t6YjzQvQ4mxrSkxssaDfFNyTgrq9g"
+			]
+		},
+		"src/interfaces/IFightLogic.sol": {
+			"keccak256": "0x7cd9b86a8310b0fc7e31d55c708edf68a8b2b6be1cddcc8585fa0de4068aa435",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3ae3b471e0900a8e50a209da35994ae1e1b000afcfd0a06ba079058f059f561d",
+				"dweb:/ipfs/QmULTpjpDm5XHamp9hy9CoaMX6EsgdoVKaSseWT8F3kQsH"
+			]
+		},
+		"src/interfaces/IOctagon.sol": {
+			"keccak256": "0x5848349b8a07a70e82605b112172c07e5c71713b5e670bbf9bf7225177be99c5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9ab5f6d66ea4b37f574bc46f1ec622e6be4a58f9caa22b01c7c82ed44c3dbd58",
+				"dweb:/ipfs/QmPBA8LkyYU3Jg3mEDxhQsS7B2DKs85uYkhHUkLuAkWcDW"
+			]
+		}
+	},
+	"version": 1
+}

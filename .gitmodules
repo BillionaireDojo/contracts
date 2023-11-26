@@ -4,3 +4,6 @@
 [submodule "lib/openzeppelin-contracts"]
 	path = lib/openzeppelin-contracts
 	url = https://github.com/openzeppelin/openzeppelin-contracts
+[submodule "lib/lukso-foundry"]
+	path = lib/lukso-foundry
+	url = https://github.com/useloopso/lukso-foundry

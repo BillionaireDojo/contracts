@@ -1,0 +1,3 @@
+@lukso/=lib/lukso-foundry/src/
+@openzeppelin/=lib/openzeppelin-contracts/
+forge-std/=lib/forge-std/
