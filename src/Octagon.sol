@@ -33,6 +33,7 @@ contract Octagon is IOctagon, Ownable, ReentrancyGuard {
     mapping(uint256 => bool) public isInOctagon;
 
     mapping(uint256 => RecoverInfo) public recoverInfos; // which tokens are currently recovering
+    mapping(uint256 => uint256) public fighterRecoverPenalty; // each recovery will decrease the max recoverable balance by 100
 
     uint256 public inOctagonLength;
 
@@ -234,6 +235,8 @@ contract Octagon is IOctagon, Ownable, ReentrancyGuard {
             "Player is currently in a fight"
         );
 
+        require(fighterRecoverPenalty[_tokenId] < 1000, "This fighter can't recover anymore");
+
         BillionaireStats memory stat = dojo.getStat(_tokenId);
         require(
             stat.balance < levelInfo[OctagonLevel.BABY].buyIn,
@@ -264,12 +267,16 @@ contract Octagon is IOctagon, Ownable, ReentrancyGuard {
 
         uint256 earned = (recoverDuration.mul(RECOVERY_AMOUNT)).div(10 ** 18);
 
-        if (earned > 1000) {
-            earned = 1000;
+        uint256 maxRecoverable = 1000 - fighterRecoverPenalty[_tokenId];
+
+        if (earned > maxRecoverable) {
+            earned = maxRecoverable;
         }
 
         dojo.increasePlayerBalance(_tokenId, earned);
         recoverInfos[_tokenId] = RecoverInfo(0, 0, false);
+
+        fighterRecoverPenalty[_tokenId] += 100;
     }
 
     function getTokenInfo(

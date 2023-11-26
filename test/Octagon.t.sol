@@ -427,6 +427,48 @@ contract OctagonTest is Test, Helper {
         assertTrue(recoverInfo.isRecovering);
     }
 
+    function testDecreaseRecoverableBalance() public {
+        vm.startPrank(users[1]);
+        dojo.mint{value: 0.007 ether}(Billionaire.Cook);
+        dojo.mint{value: 0.007 ether}(Billionaire.Cook);
+        vm.stopPrank();
+
+        uint256 newBalance = 1000;
+
+        for (uint256 i = 0; i < 10; i++) {
+            vm.startPrank(dev);
+            dojo.setOctagon(dev);
+            dojo.decreasePlayerBalance(1, newBalance);
+            dojo.setOctagon(address(octagon));
+            vm.stopPrank();
+
+            vm.startPrank(users[1]);
+            octagon.enterRecoveryZone(1);
+
+            skip(10000);
+
+            octagon.leaveRecoveryZone(1);
+
+            uint256 balance = dojo.getBalance(1);
+            console.log(balance);
+            if (balance != 1000) {
+                assertEq(newBalance - 100, balance);
+            }
+            vm.stopPrank();
+            newBalance = balance;
+        }
+
+        vm.startPrank(dev);
+        dojo.setOctagon(dev);
+        dojo.decreasePlayerBalance(1, newBalance);
+        dojo.setOctagon(address(octagon));
+        vm.stopPrank();
+
+        vm.prank(users[1]);
+        vm.expectRevert("This fighter can't recover anymore");
+        octagon.enterRecoveryZone(1);
+    }
+
     function testCannotEnterRecoveryZoneNotOwner() public {
         vm.prank(users[1]);
         dojo.mint{value: 0.007 ether}(Billionaire.Cook);
