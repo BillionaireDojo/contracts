@@ -19,8 +19,8 @@ contract Octagon is IOctagon, Ownable, ReentrancyGuard {
     uint256 public constant RECOVERY_AMOUNT = 1;
     uint256 public constant RECOVERY_AMOUNT_ACCRUE_DURATION = 10; // 1 token every 10 seconds
 
-    BillionaireDojo immutable dojo;
-    IFightLogic immutable fightLogic;
+    BillionaireDojo immutable public dojo;
+    IFightLogic public fightLogic;
 
     mapping(OctagonLevel => LevelInfo) public levelInfo;
 
@@ -413,5 +413,10 @@ contract Octagon is IOctagon, Ownable, ReentrancyGuard {
         // set game running to false
         isGameRunning = false;
         gameWinner = GameWinner(_winner, true);
+    }
+
+    function setFightLogic(IFightLogic _fightLogic) external onlyOwner {
+        require(address(_fightLogic) != address(0), "Octagon must have a valid fight logic");
+        fightLogic = _fightLogic;
     }
 }
